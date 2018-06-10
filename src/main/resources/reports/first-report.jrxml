@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sample1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="479e1225-ae4c-4519-9bca-c5b302da2c7f">
+  <property name="ireport.zoom" value="1.0"/>
+  <property name="ireport.x" value="0"/>
+  <property name="ireport.y" value="0"/>
+  <parameter name="param1" class="java.lang.String"/>
+  <parameter name="param2" class="java.lang.String"/>
+  <parameter name="datasource" class="net.sf.jasperreports.engine.JRDataSource"/>
+  <field name="name" class="java.lang.String"/>
+  <field name="postNo" class="java.lang.String"/>
+  <field name="address01" class="java.lang.String"/>
+  <field name="address02" class="java.lang.String"/>
+  <background>
+    <band splitType="Stretch"/>
+  </background>
+  <title>
+    <band height="79" splitType="Stretch">
+      <textField>
+        <reportElement x="18" y="10" width="100" height="20" uuid="19a0b426-015e-4022-9ce7-62f6bf1f6d20"/>
+        <textFieldExpression><![CDATA[$P{param1}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement x="18" y="41" width="100" height="20" uuid="5ff9da85-5f5e-49d6-aa48-3f1a2df17bdf"/>
+        <textFieldExpression><![CDATA[$P{param2}]]></textFieldExpression>
+      </textField>
+    </band>
+  </title>
+  <pageHeader>
+    <band height="35" splitType="Stretch"/>
+  </pageHeader>
+  <columnHeader>
+    <band height="23" splitType="Stretch">
+      <staticText>
+        <reportElement x="0" y="0" width="100" height="20" uuid="072944e5-634a-4ffa-a898-2a587e37ce88"/>
+        <text><![CDATA[1열]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="100" y="3" width="100" height="20" uuid="70f5bfd8-5628-4fb1-ad1e-5c1e227f1b1c"/>
+        <text><![CDATA[2열]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="264" y="3" width="100" height="20" uuid="5c73bb87-8f7a-454c-a7b0-26b5057c6abd"/>
+        <text><![CDATA[Static text]]></text>
+      </staticText>
+    </band>
+  </columnHeader>
+  <detail>
+    <band height="29" splitType="Stretch">
+      <textField>
+        <reportElement x="0" y="0" width="100" height="20" uuid="0fd17c6e-62cb-4c14-93d7-483e95981aad"/>
+        <textElement>
+          <font pdfFontName="fonts/malgun.ttf" size="13" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+        </textElement>
+        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement x="100" y="3" width="100" height="20" uuid="17199901-b34c-4689-927a-39c1017c451c"/>
+        <textElement>
+          <font pdfFontName="fonts/malgun.ttf" size="13" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+        </textElement>
+        <textFieldExpression><![CDATA[$F{address01}]]></textFieldExpression>
+      </textField>
+    </band>
+  </detail>
+  <columnFooter>
+    <band height="45" splitType="Stretch"/>
+  </columnFooter>
+  <pageFooter>
+    <band height="54" splitType="Stretch"/>
+  </pageFooter>
+  <summary>
+    <band height="42" splitType="Stretch"/>
+  </summary>
+</jasperReport>
