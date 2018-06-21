@@ -51,10 +51,65 @@ $(function() {
   });
 
   //------------------------------
-  var data = {"list": [
-    {"name": "홍길동1", "postNo": "01234", "address01": "서울 중랑구 신내", "address02": "1동"}]}
+  var data = {"list": [{}]}
 
   $('#printBtn2').on('click',function(){
+
+    // 파일 객체 가져오기 
+    var files = fileInput.files;
+    var i, f;
+    for (i = 0; i != files.length; ++i) {
+      f = files[i];
+      var reader = new FileReader();
+      var name = f.name;
+
+      try {
+        reader.onload = function(e) 
+        {
+          var workbook = XLSX.read(e.target.result, {
+            type: 'binary'
+          });
+
+          var sheet_name_list = workbook.SheetNames;
+          var sheetName = sheet_name_list[0];
+
+            data = to_json(workbook, sheetName);
+        }
+        reader.readAsBinaryString(f);  // works in Firefox and Chrome, but does NOT work in IE
+      } catch (err) {    // this code will be executed by IE
+      }
+    }
+
+    // setTimeout(function() {
+    //     $.ajax({
+    //       type: "post",
+    //        url: "print.do",
+    //       data: JSON.stringify({"list": data.Sheet1}),
+    //       contentType: "application/json",
+    //       success: function (response) {
+    //         var blob=new Blob([response]);
+    //         var link=document.createElement('a');
+    //         link.href=window.URL.createObjectURL(blob);
+    //         link.download="jasper.pdf";
+    //         link.click();
+    //       }
+    //     });
+
+    // },1000);
+
+    setTimeout(function() {
+      document.jasperForm.target = 'jasperReport';
+      document.jasperForm.list.value = JSON.stringify({"list": data.Sheet1});
+      document.jasperForm.action="./print2.do";
+      document.jasperForm.submit();
+    },1000);
+
+  });
+  //-----------------------
+
+
+  // 컬럼 2개 출력
+  $('#printBtn3').on('click',function(){
 
     // 파일 객체 가져오기 
     var files = fileInput.files;
@@ -71,39 +126,29 @@ $(function() {
           var workbook = XLSX.read(e.target.result, {
             type: 'binary'
           });
-      
 
-          
           var sheet_name_list = workbook.SheetNames;
           var sheetName = sheet_name_list[0];
 
-          // workbook.SheetNames.forEach(function(sheetName) {
-          // var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
             data = to_json(workbook, sheetName);
-          // });
         }
         reader.readAsBinaryString(f);  // works in Firefox and Chrome, but does NOT work in IE
       } catch (err) {    // this code will be executed by IE
       }
     }
 
+    setTimeout(function() {
+      document.jasperForm.target = 'jasperReport';
+      document.jasperForm.list.value = JSON.stringify({"list": data.Sheet1});
+      document.jasperForm.action="./printLabel.do";
+      document.jasperForm.submit();
+    },1000);
 
-    
-    $.ajax({
-      type: "post",
-      // url: "print.do",
-      url: "jasper.do",
-      data: JSON.stringify({"list": data.Sheet1}),
-      contentType: "application/json",
-      success: function (response) {
-        debugger;
-      }
-    });
   });
   //-----------------------
 
-
 });
+
 
 
   function handleDrop(e) {
@@ -194,7 +239,7 @@ $(function() {
       //console.log(arr);
       //console.log('-----');
     });
-    console.log(myArray);
+    // console.log(myArray);
 
     var layout = '';
       for (var i = 0; i < myArray.length; i++) {

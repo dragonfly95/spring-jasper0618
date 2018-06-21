@@ -7,7 +7,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <beans:bean id="pdfReport2"
+    <beans:bean id="firstPrint2"
+                class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <beans:property name="url" value="classpath:reports/first-print2.jrxml" />
+        <beans:property name="reportDataKey" value="datasource" />
+    </beans:bean>
+
+
+    <beans:bean id="printLabel"
               class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
      <beans:property name="url" value="classpath:reports/first-report.jrxml" />
      <beans:property name="reportDataKey" value="datasource" />

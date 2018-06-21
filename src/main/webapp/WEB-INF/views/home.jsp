@@ -83,12 +83,15 @@
  <div id="loading">
    <h2>잠시만 기다려 주세요..</h2>
  </div>
- <button id="printBtn">프린트</button>
- <br/>
- <button id="printBtn2">spring</button>
- <script>
- 
- </script>
+ <button id="printBtn">화면 프린트</button> &nbsp;&nbsp;
+ <button id="printBtn2">1개 컬럼 출력 </button>
+ <button id="printBtn3">2개컬럼 출력 </button>
+
+<form method="post" name="jasperForm">
+  <input type="hidden" name="list" value=""/>
+  <input type="hidden" name="param1" value="hello jasperForm"/>
+  <input type="hidden" name="param2" value="한글 테스트"/>
+</form>
  <!-- Button trigger modal --> 
 
  <!-- Modal -->
@@ -119,6 +122,7 @@
  </div>
 
    <script src="resources/print.js"></script>
+   <script src="resources/json-formdata.js"></script>
 </body>
 
 

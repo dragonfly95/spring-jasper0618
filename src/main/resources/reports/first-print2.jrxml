@@ -10,12 +10,6 @@
   <field name="postNo" class="java.lang.String"/>
   <field name="address01" class="java.lang.String"/>
   <field name="address02" class="java.lang.String"/>
-
-  <field name="nameRight" class="java.lang.String"/>
-  <field name="postNoRight" class="java.lang.String"/>
-  <field name="address01Right" class="java.lang.String"/>
-  <field name="address02Right" class="java.lang.String"/>
-
   <background>
     <band splitType="Stretch"/>
   </background>
@@ -87,36 +81,6 @@
         </textElement>
         <textFieldExpression><![CDATA[$F{postNo}]]></textFieldExpression>
       </textField>
-
-      <textField>
-        <reportElement x="300" y="3" width="300" height="20" uuid="17199901-b34c-4689-927a-39c1017c451c"/>
-        <textElement>
-          <font pdfFontName="fonts/malgun.ttf" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-        </textElement>
-        <textFieldExpression><![CDATA[$F{address01Right}]]></textFieldExpression>
-      </textField>
-      <textField>
-        <reportElement x="300" y="20" width="300" height="20" uuid="17199901-b34c-4689-927a-39c1017c451c"/>
-        <textElement>
-          <font pdfFontName="fonts/malgun.ttf" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-        </textElement>
-        <textFieldExpression><![CDATA[$F{address02Right}]]></textFieldExpression>
-      </textField>
-      <textField>
-        <reportElement x="300" y="40" width="100" height="20" uuid="0fd17c6e-62cb-4c14-93d7-483e95981aad"/>
-        <textElement>
-          <font pdfFontName="fonts/malgun.ttf" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-        </textElement>
-        <textFieldExpression><![CDATA[$F{nameRight}]]></textFieldExpression>
-      </textField>
-      <textField>
-        <reportElement x="300" y="60" width="100" height="20" uuid="0fd17c6e-62cb-4c14-93d7-483e95981aad"/>
-        <textElement>
-          <font pdfFontName="fonts/malgun.ttf" size="10" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-        </textElement>
-        <textFieldExpression><![CDATA[$F{postNoRight}]]></textFieldExpression>
-      </textField>
-
     </band>
   </detail>
   <columnFooter>
