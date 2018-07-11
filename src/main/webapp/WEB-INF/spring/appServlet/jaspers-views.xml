@@ -20,4 +20,19 @@
      <beans:property name="reportDataKey" value="datasource" />
   </beans:bean>
 
+
+
+    <beans:bean id="helloworld"
+                class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <beans:property name="url" value="classpath:reports/hello.jrxml" />
+        <beans:property name="reportDataKey" value="datasource" />
+    </beans:bean>
+
+    <beans:bean id="blank"
+                class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
+        <beans:property name="url" value="classpath:reports/blank.jrxml" />
+        <beans:property name="reportDataKey" value="datasource" />
+    </beans:bean>
+
+
 </beans:beans>

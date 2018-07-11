@@ -1,5 +1,9 @@
 package com.orangepump.jasper;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.*;
 
@@ -25,7 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
+//	String firstPrint2 = "firstPrint2";
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -153,15 +159,75 @@ public class HomeController {
 		usersList.add(new Address("kildong3","12345","seoul3 ", "이촌2동"));
 		usersList.add(new Address("kildong4","12345","seoul4 ", "이촌2동"));
 
-		logger.info(usersList.toString());
-
 		JRDataSource JRdataSource = new JRBeanCollectionDataSource(usersList);
 
 		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("param1", getDothomeMessage());
+		parameterMap.put("param2", "jasper Report");
 		parameterMap.put("datasource", JRdataSource);
-		modelAndView = new ModelAndView("pdfReport2", parameterMap);
+		modelAndView = new ModelAndView("firstPrint2", parameterMap);
+
+		logger.info("Jasper ============= hello.do");
+		logger.info("parameterMap.get(\"param1\")::::" + parameterMap.get("param1"));
 
 		return modelAndView;
+	}
+
+
+
+	@RequestMapping(value = "/helloworld.do", method = RequestMethod.GET)
+	public ModelAndView helloworld(ModelAndView modelAndView) {
+
+		List<Address> usersList = new ArrayList<Address>();
+		usersList.add(new Address("홍길동1","12345","서울 용산구 ", "이촌1동"));
+
+
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("param1", getDothomeMessage());
+		parameterMap.put("param2", "");
+		parameterMap.put("datasource", new JRBeanCollectionDataSource(usersList));
+		modelAndView = new ModelAndView("helloworld", parameterMap);
+
+		logger.info("Jasper ============= hello.do");
+		logger.info("parameterMap.get(\"param1\")::::" + parameterMap.get("param1"));
+
+
+		return modelAndView;
+	}
+
+
+	// hello world 가져오기
+	private String getDothomeMessage() {
+		String str = "";
+
+		try {
+			URL url = new URL("http://ahhoinn.dothome.co.kr/myData/hello.txt");
+			HttpURLConnection http = (HttpURLConnection)url.openConnection();
+
+			http.setDefaultUseCaches(false);
+			http.setDoInput(true);
+			http.setDoOutput(true);
+			http.setRequestMethod("GET");
+
+			StringBuffer buffer = new StringBuffer();
+
+			OutputStreamWriter outStream = new OutputStreamWriter(http.getOutputStream(), "utf-8");
+			PrintWriter writer = new PrintWriter(outStream);
+			writer.write(buffer.toString());
+			writer.flush();
+
+			// 서버에서내용받기
+			InputStreamReader tmp = new InputStreamReader(http.getInputStream(),"utf-8");
+			BufferedReader reader = new BufferedReader(tmp);
+
+			str = reader.readLine();
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return str;
 	}
 
 }
